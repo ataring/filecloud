@@ -24,4 +24,4 @@ var (
 使用go modules管理项目依赖，配置configgo完成后go run .运行
 
 ```
-![This is an image](../doc/示例.png)
+![This is an image](./doc/示例.png)
