@@ -1,0 +1,211 @@
+{{define "doc.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
+    
+	
+</head>
+
+
+    <body class="mdui-theme-primary-blue">   
+
+        <ul class="mdui-menu" id="menu" style="text-align: center;width: 110px;">
+
+            <li>
+                <a class="cb-download-btn cb-item-btn mdui-btn mdui-ripple mdui-text-color-pink"
+                  id="look" ><i class="mdui-menu-item-icon mdui-icon material-icons">text_fields</i>查看</a>
+            </li>
+            <li >
+                <a class="cb-delete-btn cb-item-btn mdui-btn mdui-ripple mdui-text-color-red"
+                  id="delect"><i class="mdui-menu-item-icon mdui-icon material-icons">delete</i>删除</a>
+            </li>
+            <li>
+                <a class="cb-download-btn cb-item-btn mdui-btn mdui-ripple mdui-text-color-green"
+                href="/downloadtext" ><i class="mdui-menu-item-icon mdui-icon material-icons">file_download</i>下载</a>
+            </li>
+            <li>
+                <a class="cb-detail-btn cb-item-btn mdui-btn mdui-ripple mdui-text-color-blue"
+                     id="share" ><i class="mdui-menu-item-icon mdui-icon material-icons">share</i>分享</a>
+            </li>
+        </ul> 
+
+        <div class="mdui-appbar mdui-appbar-fixed">
+            <div class="mdui-toolbar mdui-color-theme">
+                <a href="/" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe88a;</i></a>
+                <a href="/cloud" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe2bd;</i></a>
+                <a href="javascript: window.history.back();" class="mdui-btn mdui-btn-icon back-btn"><i class="mdui-icon material-icons">&#xe5c4;</i></a>
+               
+               
+                          
+                <div class="mdui-toolbar-spacer">
+                    <div style="text-align: center">云存储bucket：ataring</div>
+                </div>
+                <div style="width: 200px;">
+                    <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                        <button class="mdui-textfield-icon mdui-btn mdui-btn-icon">
+                          <i class="mdui-icon material-icons">search</i>
+                        </button>
+                        <form action="/searchdoc" method="get">
+                        <input class="mdui-textfield-input" id="search" name="search" value="{{.search}}" type="text" placeholder="Search" />
+                        </form>
+                        <button class="mdui-textfield-close mdui-btn mdui-btn-icon">
+                          <i class="mdui-icon material-icons">close</i>
+                        </button>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel cb-box mdui-container" mdui-panel>
+            <div class="mdui-appbar">
+      
+              <div class="mdui-tab mdui-color-theme mdui-tab-centered " mdui-tab>
+                <a href="/cloud" class="mdui-ripple mdui-ripple-white">
+                  <i class="mdui-icon material-icons">widgets</i>
+                  <label>全部文件</label>
+                </a>
+                <a href="/img" class="mdui-ripple mdui-ripple-white">
+                  <i class="mdui-icon material-icons">photo</i>
+                  <label>图片</label>
+                </a>
+                <a href="/video" class="mdui-ripple mdui-ripple-white">
+                  <i class="mdui-icon material-icons">movie</i>
+                  <label>视频</label>
+                </a>
+                <a href="/doc" class="mdui-ripple mdui-ripple-white mdui-tab-active">
+                  <i class="mdui-icon material-icons ">library_books</i>
+                  <label>文档</label>
+                </a>
+                <a href="/music" class="mdui-ripple mdui-ripple-white">
+                  <i class="mdui-icon material-icons">music_note</i>
+                  <label>音乐</label>
+                </a>
+              </div>
+            </div>
+                
+          </div> 
+    <div class="mdui-panel cb-box mdui-container" mdui-panel>
+
+            
+        {{range .filename}}
+            <div class="mdui-col-xs-3">
+                <div class="mdui-panel-item-header cb-item-header">
+                   
+                    <img class="cb-item-img" src="/static/img/Txt.svg" alt="">    
+                    <div class="cb-item-title" id="{{.}}">
+                    
+                        {{.}}  
+                        
+                        
+                    </div>
+                        
+                    
+                </div>
+                
+                
+
+            </div>
+            {{end}} 
+        {{/*悬浮按钮*/}}
+        <div class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'}">
+            <button class="mdui-fab mdui-ripple mdui-color-theme">
+                <!-- 默认显示的图标 -->
+                <i class="mdui-icon material-icons">menu</i>
+                <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
+                <i class="mdui-icon mdui-fab-opened material-icons">close</i>
+            </button>
+            <div class="mdui-fab-dial">
+                <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink cb-upload-btn">
+                    <label class="mdui-icon material-icons" for="cb-upload-input">
+                        backup
+                    </label>
+                    <form action="/cloudupload" method="post" class="cb-upload-form" enctype="multipart/form-data">
+                        <input type="text" value="{{.basePath}}" name="basePath" hidden>
+                        <input type="file" id="cb-upload-input" multiple name="files">
+                    </form>
+                </button>
+                <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-green cb-create-item">
+                    <i class="mdui-icon material-icons">
+                        create_new_folder
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{/*loading*/}}
+<div class="mdui-dialog" id="cb-loading-view">
+    <div class="mdui-progress">
+        <div class="mdui-progress-determinate"></div>
+    </div>
+</div>
+
+{{/*global-loading*/}}
+<div class="mdui-dialog" id="cb-global-loading-view">
+    <div class="mdui-progress">
+        <div class="mdui-progress-indeterminate"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+<script>
+    var $$ = mdui.JQ;
+    //监听鼠标右击事件 / 移动端长按事件
+    $$(document).on('contextmenu', function (e) {
+         //console.log(e);
+
+        //0：移动端长按（iOS 测试未通过）
+        //2：电脑端右键
+      
+            e.preventDefault();//阻止冒泡，阻止默认的浏览器菜单
+
+            //鼠标点击位置，相对于浏览器
+            var _x = e.pageX,
+                _y = e.pageY;
+
+            var v_id = $(e.target).attr('id');
+            console.log(v_id)
+            $$(function(){
+                $$.ajax({
+                    type:"post",
+                    url:"/id",
+                    data:{'getId':v_id}
+                })
+            })
+
+            let $div = $$("<div></div>").css({
+                position: 'absolute',
+                top: _y+'px',
+                left: _x+'px',
+            });
+            $$('body').append($div);//创建临时DOM
+            $$("#delect").attr("href","/delect/"+v_id);
+          
+            
+            $$("#look").attr("href","/look/"+v_id);
+            $$("#share").attr("href","/share/"+v_id);
+            
+            // anchorSelector 表示触发菜单的元素的 CSS 选择器或 DOM 元素
+            // menuSelector 表示菜单的 CSS 选择器或 DOM 元素
+            // options 表示组件的配置参数，见下面的参数列表
+            // 完整文档列表：https://doc.nowtime.cc/mdui/menu.html
+            var inst = new mdui.Menu($div, '#menu');
+            inst.open();//打开菜单栏
+            $div.remove();//销毁创建的临时DOM
+        
+    });
+</script>
+
+</body>
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
+
+<script src="/static/js/cloud.js"></script>
+</html>
+{{end}}

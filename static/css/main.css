@@ -1,0 +1,151 @@
+html {
+    font-size: 0.1333333333vw;
+}
+
+		* {
+			  -webkit-touch-callout:none;
+			  -webkit-user-select:none;
+			  -khtml-user-select:none;
+			  -moz-user-select:none;
+			  -ms-user-select:none;
+			  user-select:none;
+		}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.cb-box {
+    max-width: 100%;
+    margin: 80px auto 20rem;
+}
+
+@media (min-width: 960px) {
+    html {
+        font-size: 0.10416667vw;
+    }
+
+    .cb-box {
+        max-width: 80%;
+        margin: 80px auto 20rem;
+    }
+}
+
+@media (min-width: 1366px) {
+    html {
+        font-size: 0.07320644vw;
+    }
+
+    .cb-box {
+        max-width: 70%;
+        margin: 80px auto 20rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    html {
+        font-size: 0.05208333vw;
+    }
+
+    .cb-box {
+        max-width: 60%;
+        margin: 80px auto 20rem;
+    }
+}
+
+body {
+    font-size: 14px;
+}
+
+/*.box {*/
+/*    !*width: 960px;*!*/
+/*    margin: 20px auto;*/
+/*    border: 1px solid #ccc;*/
+/*    padding: 30px;*/
+/*    border-radius: 15px;*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fill, 200px);*/
+/*    gap: 25px 25px;*/
+/*    justify-content: center;*/
+/*}*/
+
+
+.cb-item-header {
+    height: 100rem;
+}
+
+
+.cb-item-img {
+    max-height: 80%;
+    height: 36rem;
+}
+
+.cb-item-title {
+    flex: 1;
+    padding: 0 16rem;
+    font-weight: bold;
+}
+
+.cb-item-body {
+    color: #666;
+}
+
+.cb-item-btn {
+    min-width: auto;
+}
+
+.mdui-panel-item-open .cb-arrow-icon {
+    transform: rotate(180deg);
+    transition: all .2s ease;
+}
+
+#cb-upload-input {
+    display: none;
+}
+
+/*文本内容*/
+#cb-content-view {
+    max-width: 80vw;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+#cb-content-view pre {
+    margin: 0;
+}
+
+/*图片*/
+#cb-img-view {
+    background: transparent;
+    pointer-events: none;
+    text-align: center;
+    max-width: 80vw;
+    max-height: 80vh;
+    box-shadow: none;
+}
+
+#cb-img-view img {
+    pointer-events: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+/*视频*/
+#cb-video-view {
+    background: transparent;
+    pointer-events: none;
+    text-align: center;
+    max-width: 80vw;
+    max-height: 80vh;
+    box-shadow: none;
+    /*height: fit-content;*/
+    /*width: fit-content;*/
+}
+
+#cb-video-view video {
+    pointer-events: auto;
+    height: 100%;
+    width: 100%;
+}
+
+

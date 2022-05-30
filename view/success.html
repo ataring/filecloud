@@ -1,0 +1,36 @@
+{{define "success.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+</head>
+<body>
+    <div class="mdui-center" style="width: 650px;height: 650px;">
+        <div class="mdui-card ">
+
+            <!-- 卡片头部，包含头像、标题、副标题 -->
+           
+              <img class=" mdui-img-rounded" src="/static/img/success.jpg">
+    
+            
+          
+    
+          
+    
+          
+            <!-- 卡片的内容 -->
+            <div class="mdui-card-content">{{.rqs}}</div>
+          
+    
+          
+          </div>
+        </div>
+
+</body>
+</html>
+{{end}}
